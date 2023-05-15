@@ -15,11 +15,11 @@ class PostController extends Controller
         ]);
     }
 
-    public function show($slug)
+    public function show(Post $post) //route model binding, variable yang diterima harus sama dengan yang ada di web.php, dan di ikat oleh model nya yaitu Post
     {
         return view('post',[
             "title" => "Single Post",
-            "post" => Post::find($slug)
+            "post" => $post
         ]);
     }
 }
