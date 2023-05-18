@@ -11,9 +11,13 @@ class Post extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function category()
+    public function category() //dibaca nya gini "satu post hanya bisa dimiliki oleh satu category"
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function author() //dibaca nya gini "satu post hanya bisa dimiliki oleh satu user"
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
-    

@@ -7,11 +7,12 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index ()
+    public function index()
     {
         return view('posts', [
-            "title" => "Posts",
-            "posts" => Post::all() //posts nya yang di ambil
+            "title" => "All Posts",
+            // "posts" => Post::all() //posts nya yang di ambil
+            "posts" => Post::with(['author','category'])->latest()->get()
         ]);
     }
 
