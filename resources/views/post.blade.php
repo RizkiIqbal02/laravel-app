@@ -12,7 +12,7 @@
 
                     <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="card-img-top mb-3" alt="...">
 
-                    <p class="mb-5">created By. <a class="text-decoration-none" href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></p>
+                    <p class="mb-5">created By. <a class="text-decoration-none" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a> in <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a></p>
                     {!! $post->body !!}
                 </article>
 
