@@ -6,7 +6,9 @@
     <div class="col-lg-5">
 
         <main class="form-signin w-100 m-auto">
-            <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+            <div class="d-flex justify-content-center">
+                <img class="mb-4" src="/img/iqbal.jpg" alt="" width="200" height="150">
+            </div>
             <h1 class="h3 mb-3 fw-normal text-center">Please Register</h1>
             <form class="mb-2" action="/register" method="post">
                 @csrf
