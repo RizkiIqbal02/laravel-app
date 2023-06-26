@@ -105,7 +105,7 @@
     </h6>
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/categories*') ? 'active' : 'text-reset' }}" href="/dashboard/categories">
-            <i class="bi bi-grid"></i>
+            <svg class="bi"><use xlink:href="#grid"/></svg>
             Categories
         </a>
     </li>
