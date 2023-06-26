@@ -45,7 +45,7 @@
       </symbol>
     </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <div class="dropdown position-absolute bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
               type="button"
@@ -148,7 +148,33 @@
     </main>
   </div>
 </div>
+
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> --}}
 <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 <script src="/js/dashboard.js"></script></body>
+
+<script>
+    // Mendapatkan semua elemen dengan kelas dropdown-item di dalam dropdown-menu
+var dropdownItems = document.querySelectorAll('.dropdown-menu .dropdown-item');
+
+// Menambahkan event listener untuk setiap elemen dropdown-item
+dropdownItems.forEach(function(item) {
+  item.addEventListener('click', function() {
+    // Mendapatkan nilai data-bs-theme-value dari elemen yang diklik
+    var themeValue = item.getAttribute('data-bs-theme-value');
+
+    // Mengubah nilai data-bs-theme pada elemen HTML dengan id "bd-theme"
+    document.documentElement.setAttribute('data-bs-theme', themeValue);
+
+    // Menghapus kelas "active" dari semua elemen dropdown-item
+    dropdownItems.forEach(function(item) {
+      item.classList.remove('active');
+    });
+
+    // Menambahkan kelas "active" pada elemen yang diklik
+    item.classList.add('active');
+  });
+});
+
+</script>
 </html>

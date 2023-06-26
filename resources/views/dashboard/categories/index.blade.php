@@ -11,7 +11,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
- 
+
     <div class="table-responsive small col-lg-4">
         <a href="/dashboard/categories/create" class="btn btn-success"><i class="bi bi-pencil-fill"></i> Create categories</a>
         <table class="table table-striped table-sm mt-2">
@@ -30,7 +30,7 @@
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->slug }}</td>
                 <td>
-                    <a class="text-white border border-info bg-info p-1 rounded px-2 py-1" href="/dashboard/categories/{{ $category->slug }}"><i class=" bi bi-eye-fill"></i></a>
+                    {{-- <a class="text-white border border-info bg-info p-1 rounded px-2 py-1" href="/dashboard/categories/{{ $category->slug }}"><i class=" bi bi-eye-fill"></i></a> --}}
                     <a class="text-white border border-warning bg-warning p-1 rounded px-2" href="/dashboard/categories/{{ $category->slug }}/edit"><i class="bi bi-pencil-fill"></i></a>
                     <form action="/dashboard/categories/{{ $category->slug }}" method="post" class="d-inline">
                     @method('delete')

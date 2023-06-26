@@ -14,4 +14,8 @@ class Category extends Model
     {
         return $this->hasMany(Post::class); // dapat diartikan satu kategori dapat dimiliki oleh banyak post
     }
+    //Route model binding
+    public function getRouteKeyName() {
+        return 'slug';
+    }
 }

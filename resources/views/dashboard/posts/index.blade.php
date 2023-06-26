@@ -32,13 +32,21 @@
                 <td>{{ $post->category->name }}</td>
                 <td>{{ $post->slug }}</td>
                 <td>
-                    <a class="text-white border border-info bg-info p-1 rounded px-2 py-1" href="/dashboard/posts/{{ $post->slug }}"><i class=" bi bi-eye-fill"></i></a>
-                    <a class="text-white border border-warning bg-warning p-1 rounded px-2" href="/dashboard/posts/{{ $post->slug }}/edit"><i class="bi bi-pencil-fill"></i></a>
-                    <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
-                    @method('delete')
-                    @csrf
-                    <button class="text-white border-0 border-danger bg-danger p-1 rounded px-2" onclick="return confirm('Are You sure about that?')"><i class="bi bi-trash-fill"></i></button>
-                    </form>
+                    <div class="dropdown-center">
+                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="/dashboard/posts/{{ $post->slug }}"><i class=" bi bi-eye-fill"></i> Show</a>
+                            <a class="dropdown-item" href="/dashboard/posts/{{ $post->slug }}/edit"><i class="bi bi-pencil-fill"></i> Edit</a>
+                            <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="dropdown-item" onclick="return confirm('Are You sure about that?')"><i class="bi bi-trash-fill"></i> Delete</button>
+                            </form>
+                        </ul>
+                    </div>
+
                 </td>
                 </tr>
             @endforeach
