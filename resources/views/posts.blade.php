@@ -1,10 +1,11 @@
 
 @extends('layouts.main')
 @section('container')
+
     <h1 class="mb-5 mt-3 text-center">{{ $title }}</h1>
 
 
-    <div class="row justify-content-center m-2">
+    {{-- <div class="row justify-content-center m-2">
         <div class="col-md-10">
             <form action="/posts">
                 @if (request('category'))
@@ -18,10 +19,10 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control p-2" placeholder="Cari post.." name="search" value="{{ request('search') }}" autofocus>
                     <button class="btn btn-danger" type="submit">Cari</button>
-                  </div>
+                </div>
             </form>
         </div>
-    </div>
+    </div> --}}
 
     @if ($posts->count())
     <div class="card mb-5">
@@ -32,14 +33,14 @@
             <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="...">
         @endif
         <div class="card-body">
-          <h5 class="card-title"><a class="text-decoration-none text-dark" href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a></h5>
+            <h5 class="card-title"><a class="text-decoration-none text-dark" href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a></h5>
 
-          <p><small class="text-body-secondary">created By. <a class="text-decoration-none" href="/posts?author={{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a> in <a class="text-decoration-none" href="/posts?category={{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a> {{ $posts[0]->created_at->diffForHumans() }}</small></p>
-          <p class="card-text">{{ $posts[0]->excerpt }}</p>
+            <p><small class="text-body-secondary">created By. <a class="text-decoration-none" href="/posts?author={{ $posts[0]->author->username }}">{{ $posts[0]->author->name }}</a> in <a class="text-decoration-none" href="/posts?category={{ $posts[0]->category->slug }}">{{ $posts[0]->category->name }}</a> {{ $posts[0]->created_at->diffForHumans() }}</small></p>
+            <p class="card-text">{{ $posts[0]->excerpt }}</p>
 
-          <a class="text-decoration-none btn btn-danger" href="/posts/{{ $posts[0]->slug }}">Read more</a>
+            <a class="text-decoration-none btn btn-danger" href="/posts/{{ $posts[0]->slug }}">Read more</a>
         </div>
-      </div>
+        </div>
 
 
     <div class="container text-center">

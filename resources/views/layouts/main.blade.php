@@ -1,27 +1,34 @@
 <!doctype html>
 <html lang="en">
-  <head>
+    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="favicon.ico">
-    <title>Sullivan | {{ $title }}</title>
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <title id="first-top-page">Sullivan | {{ $title }}</title>
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jumbotrons.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/heroes.css') }}" rel="stylesheet">
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous"> --}}
 
     {{-- icon bootstrap cdn --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     {{-- Style Gwehj --}}
     <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="css/sticky-footer-navbar.css">
+
+    </head>
+    <body>
 
     @include('partials.navbar'){{-- include navbar di folder /partial/navbar.blade.php --}}
-    <div class="container mt-4">
+    {{-- <div class="container"> --}}
         @yield('container')
-    </div>
+    {{-- </div> --}}
+    @include('partials.footer'){{-- include footer di folder /partial/footer.blade.php --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
 
 
-  </body>
+    </body>
+
 </html>
