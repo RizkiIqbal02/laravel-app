@@ -14,7 +14,8 @@
         </ul>
     </footer>
     </div>
-    <script src="{{ asset('/js/bootstrap.bundle.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+    
 
     <script>
         var showMoreLinks = document.getElementsByClassName("btn-show-more");
