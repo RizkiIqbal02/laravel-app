@@ -14,7 +14,29 @@
         </ul>
     </footer>
     </div>
-    <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+    <script src="{{ asset('/js/bootstrap.bundle.js') }}"></script>
+
+    <script>
+        var showMoreLinks = document.getElementsByClassName("btn-show-more");
+
+        for (var i = 0; i < showMoreLinks.length; i++) {
+            showMoreLinks[i].addEventListener("click", function(event) {
+                event.preventDefault();
+                var postId = this.getAttribute("data-post-id");
+                var shortBody = document.querySelector(".short-body" + postId);
+                var fullBody = document.querySelector(".full-body" + postId);
+                if (shortBody.style.display === "none") {
+                    shortBody.style.display = "inline";
+                    fullBody.style.display = "none";
+                    this.innerHTML = "Show more";
+                } else {
+                    shortBody.style.display = "none";
+                    fullBody.style.display = "inline";
+                    this.innerHTML = "Show less";
+                }
+            });
+        }
+    </script>
 
     </body>
 </html>

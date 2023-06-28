@@ -6,11 +6,11 @@
     <div class="col-lg-5">
 
         <main class="form-signin w-100 m-auto">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center mt-5">
                 {{-- <img class="mb-4" src="/img/iqbal.jpg" alt="" width="200" height="150"> --}}
                 <svg class="bi me-2" width="200" height="150" role="img" aria-label="Bootstrap"><use xlink:href="#love"/></svg>
             </div>
-            <h1 class="h3 mb-3 fw-normal text-center">Please Register</h1>
+            <h1 class="h3 mb-5 mt-3 fw-normal text-center">Please Register</h1>
             <form class="mb-2" action="/register" method="post">
                 @csrf
               <div class="form-floating">

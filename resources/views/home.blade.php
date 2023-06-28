@@ -26,10 +26,10 @@
             <h1 class="display-4 fw-bold text-body-emphasis">Made with love <svg class="bi me-2" width="40" height="52" role="img" aria-label="Bootstrap"><use xlink:href="#love"/></svg></h1>
             <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">With boundless love and relentless hard work, we shape every detail with care to create extraordinary experiences that have the power to transform the world into a more beautiful place. </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            {{-- <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                 <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
                 <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-            </div>
+            </div> --}}
             </div>
             <div class="overflow-hidden" style="max-height: 30vh;">
             <div class="container px-5">
@@ -47,7 +47,7 @@
                     <p class="col-lg-10 fs-4">Join us and become part of the developer team! Your contribution means a lot to us.</p>
                 </div>
                 @auth
-                
+
                 @else
                     <div class="col-md-10 mx-auto col-lg-5">
                         <form action="/login" class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post">
@@ -70,7 +70,7 @@
                                 </div>
                             @enderror
                         </div>
-                            <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+                            <button class="w-100 btn btn-lg btn-dark" type="submit">Log in</button>
                             <small>Not Registered yet? <a href="/register">Register Now!</a></small>
                             <hr class="my-4">
                             <small class="text-body-secondary">By clicking Log in, you agree to the terms of use.</small>

@@ -2,9 +2,10 @@
 @extends('layouts.main')
 @section('container')
 
-    <h1 class="mb-5 mt-3 text-center">{{ $title }}</h1>
+    <h1 class="mb-5 mt-5 text-center">{{ $title }}</h1>
 
 
+    {{-- Search --}}
     {{-- <div class="row justify-content-center m-2">
         <div class="col-md-10">
             <form action="/posts">
@@ -24,7 +25,60 @@
         </div>
     </div> --}}
 
+
     @if ($posts->count())
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="row">
+                    @foreach ($posts as $post)
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <a class="text-decoration-none card-title fs-5 fw-bold" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
+                                <p class="card-text"><small class="text-body-secondary">Last updated {{ $post->created_at->diffForHumans() }}</small></p>
+
+                                <div class="post-body">
+                                    @php
+                                        $isLong = strlen($post->body) > 100;
+                                        $shortBody = $isLong ? substr($post->body, 0, 100) . '...' : $post->body;
+                                    @endphp
+
+                                    <p class="card-text mb-2">
+                                        <span class="short-body{{ $loop->index }}">{{ nl2br(strip_tags($shortBody)) }}</span>
+                                        <span class="full-body{{ $loop->index }}" style="display: none;">{{ nl2br(strip_tags($post->body, '<h1>')) }}</span>
+                                    </p>
+                                    @if ($isLong)
+                                        <a href="#" class="btn-show-more" data-post-id="{{ $loop->index }}">Show more</a>
+                                    @endif
+                                </div>
+
+                                @if ($post->image)
+                                    <img src="{{ asset('storage/'. $post->image) }}" class="card-img-bottom rounded img-fluid" alt="...">
+                                @else
+                                    {{-- <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="card-img-bottom rounded" alt="..."> --}}
+                                @endif
+
+                                <hr class="divider">
+                                <a href="#" class="card-text mt-3 font-weight-10 d-inline mx-3 text-decoration-none text-reset"><i class="bi bi-hand-thumbs-up"> 1</i></a>
+                                <a href="#" class="card-text mt-3 font-weight-10 d-inline text-decoration-none text-reset"><i class="bi bi-hand-thumbs-down"> 1</i></a>
+                                <a href="#" class="card-text mt-3 font-weight-10 d-inline mx-3 text-decoration-none text-reset"><i class="bi bi-chat-dots"></i> 1</a>
+                                <a href="/post/{{ $post->slug }}" class="card-text mt-3 font-weight-10 d-inline text-decoration-none text-reset"><i class="bi bi-box-arrow-in-up-right"></i></a>
+                            </div>
+                        </div>
+                    @endforeach
+
+
+                        {{ $posts->links() }}
+                </div>
+            </div>
+        </div>
+    @else
+        <p class="text-center fs-4"> No post found</p>
+    @endif
+
+
+
+    {{-- OLD MODEL DISPLAY POSTS --}}
+    {{-- @if ($posts->count())
     <div class="card mb-5">
 
         @if ($posts[0]->image)
@@ -71,8 +125,8 @@
     </div>
 
     @else
-        <p class="text-center fs-4"> No post found</p>
-    @endif
+    <p class="text-center fs-4"> No post found</p>
+    @endif --}}
 
-    {{ $posts->links() }}
+
 @endsection

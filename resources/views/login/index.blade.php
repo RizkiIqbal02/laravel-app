@@ -18,14 +18,14 @@
         </div>
         @endif
 
-        <main class="form-signin w-100 m-auto">
+        <main class="form-signin w-100 m-auto mt-5">
             <div class="d-flex justify-content-center">
                 {{-- <img class="mb-4" src="/img/iqbal.jpg" alt="" width="200" height="150"> --}}
                 <svg class="bi me-2" width="200" height="150" role="img" aria-label="Bootstrap"><use xlink:href="#love"/></svg>
             </div>
 
-            <h1 class="h3 mb-3 fw-normal text-center">Please Log in</h1>
-            <form class="mb-2" action="/login" method="post">
+            <h1 class="h3 mb-5 mt-3 fw-normal text-center">Please Log in</h1>
+            <form class="mb-3" action="/login" method="post">
             @csrf
             <div class="form-floating">
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" required value="{{ old('email') }}">

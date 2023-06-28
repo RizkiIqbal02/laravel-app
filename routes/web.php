@@ -41,12 +41,13 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/posts', [PostController::class, 'index']); //class "PosController", method index
+Route::get('/posts', [PostController::class, 'index']); //class "PostController", method index
 
 
-Route::get('/posts/{post:slug}', [PostController::class, 'show']); //class "PosController", method show
+Route::get('/post/{post:slug}', [PostController::class, 'show']); //class "PostController", method show
 
 Route::get('/categories', function(){
+    // return response()->json(Category::all());
     return view('categories', [
         'title' => "Post Categories",
         "active" => "categories",
