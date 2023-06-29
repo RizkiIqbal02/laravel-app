@@ -18,9 +18,9 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Category</th>
+              {{-- <th scope="col">Category</th> --}}
               <th scope="col">Slug</th>
+              <th scope="col">Body</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -28,24 +28,22 @@
             @foreach ($posts as $index => $post)
                 <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $post->title }}</td>
-                <td>{{ $post->category->name }}</td>
+                {{-- <td>{{ $post->category->name }}</td> --}}
                 <td>{{ $post->slug }}</td>
+                <td>{{ substr($post->body, 0, 100) . '...' }}</td>
                 <td>
-                    <div class="dropdown-center">
-                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Action
-                        </button>
-                        <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="/dashboard/posts/{{ $post->slug }}"><i class=" bi bi-eye-fill"></i> Show</a>
-                            <a class="dropdown-item" href="/dashboard/posts/{{ $post->slug }}/edit"><i class="bi bi-pencil-fill"></i> Edit</a>
-                            <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="dropdown-item" onclick="return confirm('Are You sure about that?')"><i class="bi bi-trash-fill"></i> Delete</button>
-                            </form>
-                        </ul>
-                    </div>
+                    <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Action
+                    </button>
+                    <ul class="dropdown-menu">
+                        <a class="dropdown-item" href="/dashboard/posts/{{ $post->slug }}"><i class=" bi bi-eye-fill"></i> Show</a>
+                        <a class="dropdown-item" href="/dashboard/posts/{{ $post->slug }}/edit"><i class="bi bi-pencil-fill"></i> Edit</a>
+                        <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button class="dropdown-item" onclick="return confirm('Are You sure about that?')"><i class="bi bi-trash-fill"></i> Delete</button>
+                        </form>
+                    </ul>
 
                 </td>
                 </tr>

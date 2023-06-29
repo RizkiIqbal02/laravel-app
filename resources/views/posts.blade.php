@@ -96,7 +96,7 @@
                                         {{-- Modal body --}}
                                         <div class="modal-body">
                                             <a class="text-decoration-none card-title fs-5 fw-bold" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}
-                                                @if ( $post->author->is_admin)
+                                                @if ( $post->author->is_verified)
                                                 <i class="bi bi-check-circle-fill text-primary text-small align-text-top"></i>
                                                 @endif
                                             </a>

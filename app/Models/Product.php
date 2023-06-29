@@ -2,24 +2,23 @@
 
 namespace App\Models;
 
-// use App\Models\Category;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
+class Product extends Model
 {
     use HasFactory;
-    use Sluggable;
 
     protected $guarded = ['id'];
-    protected $with = ['author'];
-    // protected $with = ['category','author'];
+    protected $with = ['category'];
 
     public function scopeSearching($query, array $saringan) {
         if (isset($saringan['search']) ? $saringan['search'] : false)  {
-            return $query->where('title', 'like', '%'.$saringan['search'].'%')
-            ->orWhere('body', 'like', '%'.$saringan['search'].'%');
+            return $query->where('name', 'like', '%'.$saringan['search'].'%')
+            ->orWhere('slug', 'like', '%'.$saringan['search'].'%')
+            ->orWhere('price', 'like', '%'.$saringan['search'].'%')
+            ->orWhere('stock', 'like', '%'.$saringan['search'].'%');
         }
         // $query->when($saringan['search'] ?? false, function($query, $cari){
         //     return $query->where('title', 'like', '%'.$cari.'%')->orWhere('body', 'like', '%'.$cari.'%')->orWhere('excerpt', 'like', '%'.$cari.'%');
@@ -38,27 +37,12 @@ class Post extends Model
         });
 
     }
-    // public function category() //dibaca nya gini "satu post hanya bisa dimiliki oleh satu category"
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
 
-    public function author() //dibaca nya gini "satu post hanya bisa dimiliki oleh satu user"
+    public function category() //dibaca nya gini "satu product hanya bisa dimiliki oleh satu category"
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
-    //Route model binding
-    public function getRouteKeyName() {
-        return 'slug';
-    }
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
-    }
 }
+

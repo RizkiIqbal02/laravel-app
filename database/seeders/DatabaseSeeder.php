@@ -39,32 +39,32 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
 
         Category::create ([
-            'name' => 'Programming',
-            'slug' => 'programming'
+            'name' => 'Makanan',
+            'slug' => 'makanan'
         ]);
 
 
         Category::create ([
-            'name' => 'Web Design',
-            'slug' => 'web-design'
+            'name' => 'Minuman',
+            'slug' => 'minuman'
         ]);
 
         Category::create ([
-            'name' => 'Personal',
-            'slug' => 'personal'
+            'name' => 'Bahan Masak',
+            'slug' => 'bahan masak'
         ]);
 
         Category::create ([
-            'name' => 'Vacation',
-            'slug' => 'vacation'
+            'name' => 'Elektronik',
+            'slug' => 'elektronik'
         ]);
 
         Category::create ([
-            'name' => 'Horror',
-            'slug' => 'horror'
+            'name' => 'Alat Kebersihan',
+            'slug' => 'Alat mebersihan'
         ]);
 
-        Post::factory(30)->create();
+        Post::factory(100)->create();
 
         // Post::create ([
         //     'title' => 'Halaman Pertama',

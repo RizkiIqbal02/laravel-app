@@ -84,6 +84,9 @@
     <symbol id="grid" viewBox="0 0 16 16">
         <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
     </symbol>
+    <symbol id="marketplace" viewBox="0 0 16 16">
+        <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
+    </symbol>
 </svg>
 
 <header class="p-3 text-bg-dark sticky-top">
@@ -97,13 +100,14 @@
             <li><a href="/" class="nav-link px-2 {{ ($active==="home") ? 'text-white' : 'text-secondary' }}"><svg class="bi me-2" width="20" height="20" aria-label="Bootstrap"><use xlink:href="#home"/></svg>Home</a></li>
             <li><a href="/about" class="nav-link px-2 {{ ($active==="about") ? 'text-white' : 'text-secondary' }}"><svg class="bi me-2" width="20" height="20" aria-label="Bootstrap"><use xlink:href="#about"/></svg>About</a></li>
             <li><a href="/posts" class="nav-link px-2 {{ ($active==="posts") ? 'text-white' : 'text-secondary' }}"><svg class="bi me-2" width="20" height="20" aria-label="Bootstrap"><use xlink:href="#post"/></svg>Blog</a></li>
+            <li><a href="/products" class="nav-link px-2 {{ ($active==="products") ? 'text-white' : 'text-secondary' }}"><svg class="bi me-2" width="20" height="20" aria-label="Bootstrap"><use xlink:href="#marketplace"/></svg>Marketplace</a></li>
             <li><a href="/categories" class="nav-link px-2 {{ ($active==="categories") ? 'text-white' : 'text-secondary' }}"><svg class="bi me-2" width="20" height="20" aria-label="Bootstrap"><use xlink:href="#grid"/></svg>Categories</a></li>
         </ul>
 
         {{-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <input type="text" class="form-control form-control-light text-bg-light" placeholder="Search..." name="search" value="{{ request('search') }}" autofocus>
         </form> --}}
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/posts">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/{{ $active }}">
             @if (request('category'))
                 <input type="hidden" name="category" value="{{ request('category') }}">
             @endif

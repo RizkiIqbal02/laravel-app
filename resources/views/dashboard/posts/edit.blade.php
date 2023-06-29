@@ -26,7 +26,7 @@
                 </div>
                 @enderror
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
               <label for="category_id" class="form-label">Category</label>
               <select class="form-select" name="category_id">
                 @foreach ($categories as $category)
@@ -37,9 +37,9 @@
                 @endif
                 @endforeach
               </select>
-            </div>
+            </div> --}}
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
                 <input type="hidden" name="oldImage" value="{{ $post->image }}">
                 @if ($post->image)
@@ -53,7 +53,7 @@
                     {{ $message }}
                 </div>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label for="body" class="form-label">Body</label>

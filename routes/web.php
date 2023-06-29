@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminCategoryController;
-use App\Http\Controllers\DashboardPostController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\DashboardPostController;
 
 
 /*
@@ -73,7 +75,9 @@ Route::resource('/dashboard/posts', DashboardPostController::class)->middleware(
 
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
 
+Route::resource('/products', ProductController::class);
 
+Route::resource('/dashboard/products', AdminProductController::class)->except('show')->middleware('admin');
 
 
 

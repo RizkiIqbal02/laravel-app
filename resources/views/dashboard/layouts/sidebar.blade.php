@@ -6,7 +6,7 @@
       </div>
       <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
         <ul class="nav flex-column">
-            
+
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard') ? 'active' : 'text-reset' }} " aria-current="page" href="/dashboard">
               <svg class="bi"><use xlink:href="#house-fill"/></svg>
@@ -82,12 +82,12 @@
 
 
         <ul class="nav flex-column mb-auto">
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/settings') ? 'active' : 'text-reset' }}" href="dashboard/settings">
               <svg class="bi"><use xlink:href="#gear-wide-connected"/></svg>
               Settings
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
           <form action="/logout" method="post">
               @csrf
@@ -102,6 +102,12 @@
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/categories*') ? 'active' : 'text-reset' }}" href="/dashboard/categories"><svg class="bi"><use xlink:href="#grid"/></svg>Categories</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 {{ Request::is('dashboard/products*') ? 'active' : 'text-reset' }} " aria-current="page" href="/dashboard/products">
+          <svg class="bi"><use xlink:href="#cart"/></svg>
+          Products
+        </a>
+      </li>
     @endcan
     </div>
     </div>
