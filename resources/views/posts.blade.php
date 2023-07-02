@@ -2,6 +2,8 @@
 @extends('layouts.main')
 @section('container')
 
+
+
     <h1 class="mb-5 mt-5 text-center">{{ $title }}</h1>
 
 
@@ -24,8 +26,13 @@
             </form>
         </div>
     </div> --}}
+{{--
+    @foreach ($posts as $post)
+    @foreach ($post->comments as $comment)
 
-
+    @dd($comment->user)
+    @endforeach
+    @endforeach --}}
     @if ($posts->count())
         <div class="container-fluid d-flex justify-content-center">
             <div class="col-lg-8">
@@ -36,7 +43,7 @@
 
                                 <a class="text-decoration-none card-title fs-5 fw-bold align-text-bottom" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}
                                     @if ( $post->author->is_admin)
-                                        <i class="bi bi-check-circle-fill text-primary text-small align-text-top"></i>
+                                        <i class="bi bi-check-circle-fill text-success text-small align-text-top"></i>
                                     @endif
                                 </a>
                                 <p class="card-text"><small class="text-body-secondary">Last updated {{ $post->created_at->diffForHumans() }}</small></p>
@@ -70,16 +77,16 @@
 
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset">
+                                <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset rounded-3">
                                     <i class="bi bi-hand-thumbs-up"></i>1
                                 </button>
-                                <button type="button" class="card-text mt-0 font-weight-10 d-inline text-decoration-none text-reset">
+                                <button type="button" class="card-text mt-0 font-weight-10 d-inline text-decoration-none text-reset rounded-3">
                                     <i class="bi bi-hand-thumbs-down"></i>1
                                 </button>
-                                <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $post->id }}">
-                                    <i class="bi bi-chat-dots"></i> 1
+                                <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset rounded-3" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $post->id }}">
+                                    <i class="bi bi-chat-dots"></i> {{ $post->comments->count() }}
                                 </button>
-                                <button type="button" class="card-text mt-0 font-weight-10 d-inline text-decoration-none text-reset" onclick="window.location.href='/post/{{ $post->slug }}'">
+                                <button type="button" class="card-text mt-0 font-weight-10 d-inline text-decoration-none text-reset rounded-3" onclick="window.location.href='/post/{{ $post->slug }}'">
                                     <i class="bi bi-box-arrow-in-up-right"></i>
                                 </button>
 
@@ -87,7 +94,7 @@
                                 <div class="modal fade" id="exampleModal-{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                         {{-- modal pembungkus --}}
-                                    <div class="modal-content bg-dark text-bg-dark">
+                                    <div class="modal-content bg-light text-bg-light">
                                         {{-- modal header --}}
                                         <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Post by {{ $post->author->name }}</h1>
@@ -97,10 +104,10 @@
                                         <div class="modal-body">
                                             <a class="text-decoration-none card-title fs-5 fw-bold" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}
                                                 @if ( $post->author->is_verified)
-                                                <i class="bi bi-check-circle-fill text-primary text-small align-text-top"></i>
+                                                <i class="bi bi-check-circle-fill text-success text-small align-text-top"></i>
                                                 @endif
                                             </a>
-                                            <p class="card-text"><small class="text-bg-dark">Last updated {{ $post->created_at->diffForHumans() }}</small></p>
+                                            <p class="card-text"><small class="text-bg-light">Last updated {{ $post->created_at->diffForHumans() }}</small></p>
 
                                             <div class="post-body mb-3">
                                                 {!! $post->body !!}
@@ -111,21 +118,56 @@
                                             @endif
 
                                             <hr class="divider">
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset bg-dark">
-                                                <i class="bi bi-hand-thumbs-up"></i>1
-                                            </button>
-                                            <button type="button" class="card-text mt-0 font-weight-10 d-inline text-decoration-none text-reset bg-dark">
-                                                <i class="bi bi-hand-thumbs-down"></i>1
-                                            </button>
-                                            <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset bg-dark">
-                                                <i class="bi bi-chat-dots"></i> 1
-                                            </button>
+                                            <!-- Button reactions -->
+                                                <div class="container">
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-auto">
+                                                            <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset bg-light rounded-3">
+                                                                <i class="bi bi-hand-thumbs-up"></i>1
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <button type="button" class="card-text mt-0 font-weight-10 d-inline text-decoration-none text-reset bg-light rounded-3">
+                                                                <i class="bi bi-hand-thumbs-down"></i>1
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <button type="button" class="card-text mt-0 font-weight-10 d-inline mx-3 text-decoration-none text-reset bg-light rounded-3">
+                                                                <i class="bi bi-chat-dots"></i> {{ $post->comments->count() }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="divider">
+                                            <h5>Comments</h5>
+                                            @foreach ($post->comments as $comment)
+                                                <div class="mt-5">
+                                                    @if ( $comment->user->is_admin)
+                                                        <p class="text-decoration-none card-title fs-5 fw-bold align-text-bottom" href="/posts?author={{ $post->author->username }}">{{ $comment->user->name }}
+                                                                <i class="bi bi-check-circle-fill text-success text-small align-text-top"></i>
+                                                        </p>
+                                                            <p>{{ $comment->content }}</p>
+                                                    @else
+                                                    <h5 class="fs-5 fw-bold">{{ $comment->user->name }}</h5>
+                                                    <p>{{ $comment->content }}</p>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+
                                         </div>
                                         {{-- Modal footer body --}}
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                            <div class="input-group">
+                                                @auth
+                                                <form action="/posts/comment" method="post" class="col-lg-10 d-flex">
+                                                    @csrf
+                                                    <input type="hidden" class="form-control" name="user_id" aria-label="Text input with segmented dropdown button" value="{{ auth()->user()->id }}">
+                                                    <input type="hidden" class="form-control" name="post_id" aria-label="Text input with segmented dropdown button" value="{{ $post->id }}">
+                                                    <input type="textarea" class="form-control" name="content" aria-label="Text input with segmented dropdown button">
+                                                    <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-cursor-fill"></i></button>
+                                                </form>
+                                                @endauth
+                                            </div>
                                         </div>
                                     </div>
                                     </div>
