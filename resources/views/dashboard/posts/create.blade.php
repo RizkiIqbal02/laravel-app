@@ -1,15 +1,17 @@
 @extends('dashboard.layouts.main')
 
 @section('container')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Create Your posts</h1>
     </div>
     <div class="col-lg-8">
         <form action="/dashboard/posts" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus value="{{ old('title') }}">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                       required autofocus value="{{ old('title') }}">
                 @error('title')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -17,8 +19,9 @@
                 @enderror
             </div>
             <div class="mb-3">
-              <label for="slug" class="form-label">Slug</label>
-              <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" readonly value="{{ old('slug') }}">
+                <label for="slug" class="form-label">Slug</label>
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
+                       readonly value="{{ old('slug') }}">
                 @error('slug')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -41,7 +44,8 @@
             <div class="mb-3">
                 <label for="images" class="form-label">Post Images</label>
                 <img class="img-preview img-fluid mb-3 col-sm-5">
-                <input class="form-control @error('images') is-invalid @enderror" type="file" id="images" name="images[]" onchange="imgPreview()" multiple>
+                <input class="form-control @error('images') is-invalid @enderror" type="file" id="images"
+                       name="images[]" onchange="imgPreview()" multiple>
                 @error('images')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -53,7 +57,7 @@
                 <label for="body" class="form-label">Body</label>
                 @error('body')
 
-                    <p class="text-danger">{{ $message }}</p>
+                <p class="text-danger">{{ $message }}</p>
 
                 @enderror
                 <input id="body" type="hidden" name="body" value="{{ old('body') }}">
@@ -61,23 +65,23 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
-          </form>
+        </form>
     </div>
 
     <script>
         const title = document.querySelector('#title');
         const slug = document.querySelector('#slug');
 
-        title.addEventListener('change', function(){
+        title.addEventListener('change', function () {
             fetch('/dashboard/posts/checkSlug?title=' + title.value)
-            .then(response=>response.json())
-            .then(data=>slug.value = data.slug)
+                .then(response => response.json())
+                .then(data => slug.value = data.slug)
         });
-        title.addEventListener('trix-file-accept', function(e){
+        title.addEventListener('trix-file-accept', function (e) {
             e.preventDefault();
         });
 
-        function imgPreview(){
+        function imgPreview() {
             const image = document.querySelector('#images');
             const imgPreview = document.querySelector('.img-preview');
 

@@ -6,7 +6,7 @@ use App\Models\Post;
 // use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardPostController extends Controller

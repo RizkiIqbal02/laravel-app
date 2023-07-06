@@ -16,7 +16,9 @@
                     @endif --}}
 
 
-                    <p class="mb-5">created By. <a class="text-decoration-none" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a></p>
+                    <p class="mb-5">created By. <a class="text-decoration-none"
+                                                   href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
+                    </p>
                     {{-- in <a href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a> --}}
                     {!! $post->body !!}
                 </article>
@@ -25,6 +27,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection
