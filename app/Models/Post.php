@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use App\Models\Category;
 use App\Models\Comment;
+use App\Models\PostsImage;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +15,7 @@ class Post extends Model
     use Sluggable;
 
     protected $guarded = ['id'];
-    protected $with = ['author', 'comments'];
+    protected $with = ['author', 'comments','images'];
     // protected $with = ['category','author'];
 
     public function scopeSearching($query, array $saringan) {
@@ -51,6 +52,10 @@ class Post extends Model
     public function comments() //dibaca nya gini "satu post hanya bisa dimiliki oleh satu user"
     {
         return $this->hasMany(Comment::class);
+    }
+    public function images() //dibaca nya gini "satu post hanya bisa dimiliki oleh satu user"
+    {
+        return $this->hasMany(PostsImage::class);
     }
 
     //Route model binding

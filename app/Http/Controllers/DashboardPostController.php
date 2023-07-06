@@ -52,7 +52,22 @@ class DashboardPostController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         // $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
 
-        Post::create($validatedData);
+        // Post::create($validatedData);
+        $post = new Post;
+        $post->title = $validatedData['title'];
+        $post->slug = $validatedData['slug'];
+        $post->body = $validatedData['body'];
+        $post->user_id = $validatedData['user_id'];
+        $post->save();
+
+        // Simpan gambar-gambar yang diunggah
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $source = $image->store('posts-images'); // Ganti dengan direktori penyimpanan yang sesuai
+                $post->images()->create(['source' => $source]);
+            }
+        }
         return redirect('/dashboard/posts')->with('success', 'Your post is successfully created');
     }
 

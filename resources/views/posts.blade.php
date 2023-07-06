@@ -38,8 +38,8 @@
             <div class="col-lg-8">
                 <div class="row">
                     @foreach ($posts as $post)
-                        <div class="card mb-3">
-                            <div class="card-body">
+                        <div class="card mb-3 bg-secondary-subtle">
+                            <div class="card-body text-bg-light bg-secondary-subtle">
 
                                 <a class="text-decoration-none card-title fs-5 fw-bold align-text-bottom" href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}
                                     @if ( $post->author->is_admin)
@@ -63,11 +63,41 @@
                                     @endif
                                 </div>
 
-                                @if ($post->image)
-                                    <img src="{{ asset('storage/'. $post->image) }}" class="card-img-bottom rounded img-fluid" alt="...">
+                                @if ($post->images->isNotEmpty())
+                                    <div id="carouselExampleControlsNoTouching-{{ $loop->index }}" class="carousel slide" data-bs-touch="false" style="position: relative; display: inline-block;">
+                                        <div class="carousel-inner">
+                                            @foreach ($post->images as $key => $image)
+                                                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                                                    <img src="{{ asset('storage/'. $image->source) }}" class="card-img-bottom rounded img-fluid" alt="...">
+                                                    <div class="carousel-caption">
+                                                        <small class="text-dark">{{ $loop->iteration }} of {{ $loop->count }}</small>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="carousel-controls" style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                                            <button class="carousel-control-prev rounded-start-3" type="button" data-bs-target="#carouselExampleControlsNoTouching-{{ $loop->index }}" data-bs-slide="prev" style="background-color: rgba(0, 0, 0, 0.5); color: #fff; width: 50px; height: 50px;" onmouseover="this.style.backgroundColor = 'rgba(0, 0, 0, 1)'" onmouseout="this.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next rounded-end-3" type="button" data-bs-target="#carouselExampleControlsNoTouching-{{ $loop->index }}" data-bs-slide="next" style="background-color: rgba(0, 0, 0, 0.5); color: #fff; width: 50px; height: 50px;" onmouseover="this.style.backgroundColor = 'rgba(0, 0, 0, 1)'" onmouseout="this.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 @else
+
+
                                     {{-- <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="card-img-bottom rounded" alt="..."> --}}
                                 @endif
+                                {{-- @if ($post->images)
+                                    <div class="d-flex flex-wrap">
+                                        @foreach ($post->images as $image)
+                                            <img src="{{ asset('storage/'. $image->source) }}" class="card-img-bottom rounded img-fluid mx-2 my-2" style="max-width: 350px;" alt="...">
+                                        @endforeach
+                                    </div>
+                                @endif --}}
 
                                 <hr class="divider">
                                 {{-- <a href="#" class="card-text mt-3 font-weight-10 d-inline mx-3 text-decoration-none text-reset"><i class="bi bi-hand-thumbs-up"> 1</i></a> --}}
